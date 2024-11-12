@@ -12,16 +12,23 @@ const {
 } = require("../validators/appointments");
 const checkErrors = require("../validators/checkErrors");
 const router = express.Router();
+const { auth } = require("../middleware/auth");
 
-router.get("/appointments", getAllAppointments);
-router.put("/appointments", addNewAppointment);
-router.delete("/appointments/:id", deleteOneAppointmentById);
+router.get("/appointments", auth, getAllAppointments);
+router.put("/appointments", auth, addNewAppointment);
+router.delete("/appointments/:id", auth, deleteOneAppointmentById);
 router.post(
   "/appointments",
+  auth,
   validateIdInBody,
   checkErrors,
   getOneAppointmentById
 );
-router.patch("/appointments/:id", validateIdInParam, updateOneAppointment);
+router.patch(
+  "/appointments/:id",
+  auth,
+  validateIdInParam,
+  updateOneAppointment
+);
 
 module.exports = router;
