@@ -60,6 +60,7 @@ const updateOneAppointment = async (req, res) => {
   try {
     const updateAppointment = {};
     if ("title" in req.body) updateAppointment.title = req.body.title;
+    if ("type" in req.body) updateAppointment.type = req.body.type;
     if ("purpose" in req.body) updateAppointment.purpose = req.body.purpose;
     if ("attendee" in req.body) updateAppointment.attendee = req.body.attendee;
     if ("company" in req.body) updateAppointment.company = req.body.company;
