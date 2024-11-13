@@ -11,6 +11,7 @@ const AppointmentSchema = new mongoose.Schema(
     date: { type: String, required: true },
     time: { type: String, required: true },
     comment: { type: String, required: true },
+    owner: { type: mongoose.Schema.Types.ObjectId, ref: "Auth" },
   },
   { collection: "appointments" }
 );

@@ -12,6 +12,7 @@ const addNewAppointment = async (req, res) => {
       date: req.body.date,
       time: req.body.time,
       comment: req.body.comment,
+      owner: req.userId,
     };
     await AppointmentsModel.create(newAppointment);
 
@@ -24,7 +25,7 @@ const addNewAppointment = async (req, res) => {
 
 const getAllAppointments = async (req, res) => {
   try {
-    const allAppointments = await AppointmentsModel.find();
+    const allAppointments = await AppointmentsModel.find({ owner: req.userId });
     res.json(allAppointments);
   } catch (err) {
     console.error(err.message);

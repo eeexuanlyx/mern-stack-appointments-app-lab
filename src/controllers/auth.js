@@ -9,7 +9,7 @@ const getAllUsers = async (req, res) => {
 
     const outputArray = [];
     for (const user of users) {
-      outputArray.push({ email: user.email, role: user.role });
+      outputArray.push({ email: user.email });
     }
     res.json(outputArray);
   } catch (err) {
@@ -61,6 +61,7 @@ const login = async (req, res) => {
     //take from database as is source of truth
     const claims = {
       email: auth.email,
+      userId: auth._id,
     };
 
     const access = jwt.sign(claims, process.env.ACCESS_SECRET, {
